@@ -2,12 +2,27 @@
 
 > **An ultra-featherlight, high-precision, zero-bloat live network speed monitor for the Windows 11 Taskbar.**
 
+<div align="center">
+
+[![Download NetSpeedLite](https://img.shields.io/badge/⬇️_Download-NetSpeedLite.exe_(v1.0.0)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite.exe)
+
+[![Latest Release](https://img.shields.io/github/v/release/git-ysf/NetSpeedLite?color=blue&label=Release)](https://github.com/git-ysf/NetSpeedLite/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform: Windows 11 / 10](https://img.shields.io/badge/Platform-Windows%2011%20%7C%2010-0078D4.svg)](https://microsoft.com/windows)
 [![Binary Size](https://img.shields.io/badge/Binary%20Size-~16%20KB-success.svg)](#)
 [![RAM Usage](https://img.shields.io/badge/RAM%20Usage-~5%20MB-brightgreen.svg)](#)
 [![CPU Usage](https://img.shields.io/badge/CPU%20Usage-0.00%25-brightgreen.svg)](#)
-[![Dependencies](https://img.shields.io/badge/Dependencies-Zero-informational.svg)](#)
+
+</div>
+
+---
+
+## 📥 Direct Download
+
+> ### 👉 [**Click Here to Download NetSpeedLite.exe (v1.0.0)**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite.exe)
+> *(Single portable `~16 KB` executable. No installation required. Just run it!)*
+>
+> You can also browse all version notes and checksums on the [**GitHub Releases Page**](https://github.com/git-ysf/NetSpeedLite/releases).
 
 ---
 
@@ -100,9 +115,10 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /optimize
 
 ## 📦 Installation & Setup
 
-1. Copy `NetSpeedLite.exe` to `C:\Program Files\NetSpeedLite\` (or any directory).
-2. Run `NetSpeedLite.exe`.
-3. Right-click the monitor on your taskbar and ensure **Start with Windows** is checked.
+1. [**Download NetSpeedLite.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite.exe)
+2. Place `NetSpeedLite.exe` in `C:\Program Files\NetSpeedLite\` (or any directory of your choice).
+3. Run `NetSpeedLite.exe`.
+4. Right-click the monitor on your taskbar and ensure **Start with Windows** is checked.
 
 ---
 
