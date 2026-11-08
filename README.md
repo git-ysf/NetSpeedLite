@@ -1,36 +1,31 @@
 # 🚀 NetSpeedLite
 
-> **An ultra-featherlight, high-precision, zero-bloat live network speed monitor for the Windows 11 Taskbar.**
+> **An ultra-featherlight, high-precision, zero-bloat live network speed monitor for the Windows 11 & 10 Taskbar.**
 
 <div align="center">
 
-[![Download NetSpeedLite](https://img.shields.io/badge/⬇️_Download-NetSpeedLite.exe_(v1.0.0)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite.exe)
+[![Download NetSpeedLite (x64)](https://img.shields.io/badge/⬇️_Download-NetSpeedLite_x64_(v1.0.0)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe)
+[![Download Universal (ARM64 / Copilot+)](https://img.shields.io/badge/⬇️_Universal-AnyCpu_(ARM64%20%2F%20x64)-059669?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe)
 
-[![Latest Release](https://img.shields.io/github/v/release/git-ysf/NetSpeedLite?color=blue&label=Release)](https://github.com/git-ysf/NetSpeedLite/releases/latest)
+<br/>
+
+[![Latest Release](https://img.shields.io/github/v/release/git-ysf/NetSpeedLite?color=blue&label=Latest%20Release)](https://github.com/git-ysf/NetSpeedLite/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform: Windows 11 / 10](https://img.shields.io/badge/Platform-Windows%2011%20%7C%2010-0078D4.svg)](https://microsoft.com/windows)
-[![Binary Size](https://img.shields.io/badge/Binary%20Size-~16%20KB-success.svg)](#)
+[![Binary Size](https://img.shields.io/badge/Binary%20Size-~18%20KB-success.svg)](#)
 [![RAM Usage](https://img.shields.io/badge/RAM%20Usage-~5%20MB-brightgreen.svg)](#)
 [![CPU Usage](https://img.shields.io/badge/CPU%20Usage-0.00%25-brightgreen.svg)](#)
+[![Dependencies](https://img.shields.io/badge/Dependencies-Zero-informational.svg)](#)
 
 </div>
 
 ---
 
-## 📥 Direct Download
-
-> ### 👉 [**Click Here to Download NetSpeedLite.exe (v1.0.0)**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite.exe)
-> *(Single portable `~16 KB` executable. No installation required. Just run it!)*
->
-> You can also browse all version notes and checksums on the [**GitHub Releases Page**](https://github.com/git-ysf/NetSpeedLite/releases).
-
----
-
 ## 💡 Overview
 
-**NetSpeedLite** is a dedicated, ultra-minimalist network speed monitor that sits silently and permanently on your Windows 11 taskbar (right next to the system tray chevron `^`), displaying real-time upload and download speeds with microsecond accuracy.
+**NetSpeedLite** is a dedicated, ultra-minimalist network speed monitor that sits silently and permanently on your Windows taskbar (docked beside the system tray chevron `^`), displaying real-time upload and download speeds with microsecond accuracy.
 
-It was created to solve the bloat, instability, and intrusive popups common to legacy monitors like **TrafficMonitor**, providing a clean, featherlight alternative that respects system resources.
+It was created to eliminate the bloat, background services, and intrusive popups of legacy monitors like **TrafficMonitor**, providing a clean, featherlight alternative that respects your CPU, GPU, and RAM.
 
 ```
        Taskbar Preview (Native Segoe UI + Transparent Background)
@@ -42,13 +37,38 @@ It was created to solve the bloat, instability, and intrusive popups common to l
 
 ---
 
-## 🥊 Comparison: NetSpeedLite vs. TrafficMonitor
+## 💻 Supported Devices & Download Options
 
-Many users rely on tools like TrafficMonitor to keep tabs on their internet speed. While feature-rich, TrafficMonitor carries significant technical overhead and legacy Windows quirks. Here is how **NetSpeedLite** compares:
+NetSpeedLite is engineered to run on **any modern or legacy Windows computer** with zero installation required:
+
+### 📱 Supported Device Form Factors
+- 💻 **Laptops & Ultrabooks:** Lenovo (IdeaPad, ThinkPad, Legion, Yoga), Dell (XPS, Inspiron, Latitude), HP (Spectre, Envy, Omen), ASUS (ZenBook, ROG, TUF), Acer, Samsung Galaxy Book.
+- 🖥️ **Desktops & Workstations:** Custom PC rigs, Intel NUCs, Mini PCs (Beelink, Minisforum), high-end video editing and 3D rendering workstations.
+- 📱 **2-in-1s & Tablets:** Microsoft Surface Pro / Surface Laptop / Surface Go, HP Pavilion x360, Dell 2-in-1s.
+- 🎮 **Windows Gaming Handhelds:** ASUS ROG Ally / Ally X, Lenovo Legion Go, MSI Claw, Steam Deck (running Windows 11/10).
+- ⚡ **ARM64 & Copilot+ PCs:** Snapdragon X Elite & Snapdragon X Plus devices (Surface Pro 11, Surface Laptop 7, Lenovo Yoga Slim 7x, Dell XPS 13 Copilot+).
+
+---
+
+### 📦 Optimized Downloads by Architecture
+
+Choose the build optimized for your device:
+
+| Architecture | Target Devices | Size | Download |
+| :--- | :--- | :---: | :---: |
+| **x64 (64-bit)** *(Recommended)* | 99% of modern Intel & AMD laptops, desktops, and handhelds | `18 KB` | [**Download x64**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe) |
+| **AnyCpu (Universal)** | **ARM64 Copilot+ PCs** (Snapdragon X Elite), Surface Pro, Intel & AMD | `18 KB` | [**Download Universal**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe) |
+| **x86 (32-bit)** | Older 32-bit PCs, lightweight Windows VMs, legacy tablets | `18 KB` | [**Download x86**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x86.exe) |
+
+> 💡 *All builds are completely portable: single standalone `.exe` files with no installer needed. You can also view all assets on the [GitHub Releases Page](https://github.com/git-ysf/NetSpeedLite/releases).*
+
+---
+
+## 🥊 Comparison: NetSpeedLite vs. TrafficMonitor
 
 | Metric / Feature | 🏆 NetSpeedLite | ⚠️ TrafficMonitor | Why It Matters |
 | :--- | :---: | :---: | :--- |
-| **Executable Size** | **~16 KB** | ~35 MB | **99.9% smaller.** A single tiny binary you can store anywhere. |
+| **Executable Size** | **~18 KB** | ~35 MB | **99.9% smaller.** A single tiny binary you can store anywhere. |
 | **RAM Consumption** | **~5.5 MB** | 30 MB – 65 MB | **85% less memory.** Leaves maximum RAM for video editing, gaming, and creative work. |
 | **CPU Utilization** | **0.00%** | 0.3% – 1.5% | Zero CPU cycle waste. Samples hardware deltas in microseconds and sleeps. |
 | **External Dependencies** | **None** | Multiple DLLs | TrafficMonitor ships with `LibreHardwareMonitorLib.dll`, `OpenHardwareMonitorApi.dll`, and requires MSVC runtimes. NetSpeedLite uses native Windows components. |
@@ -62,8 +82,8 @@ Many users rely on tools like TrafficMonitor to keep tabs on their internet spee
 
 ## ✨ Key Qualities & Architecture
 
-### 🪶 1. Featherlight Footprint
-- **Single 16 KB Executable:** No installer, no background services, no scheduled tasks, no temporary extraction files.
+### 🪶 1. True Featherlight Architecture
+- **Single Portable File:** No installer, no background services, no scheduled tasks, no temporary extraction files.
 - **Micro-Memory Allocation:** Operates within ~5 MB of RAM, leaving your system completely unburdened.
 - **0.00% CPU Consumption:** Samples network deltas once every 1,000 ms using hardware counters and remains fully asleep between ticks.
 
@@ -92,47 +112,42 @@ Many users rely on tools like TrafficMonitor to keep tabs on their internet spee
 
 ---
 
+## 🌐 Recommended Featherlight Monitors for Other Operating Systems
+
+If you are visiting from another operating system or looking for companion monitors for your other devices, here are the absolute best, most featherlight open-source recommendations:
+
+### 🍏 macOS (MacBook, Mac Mini, Mac Studio, iMac)
+- **[Stats](https://github.com/exelban/stats)** *(Highly Recommended)*: An open-source macOS menu bar monitor written in 100% native Swift. Featherlight (~15 MB RAM, 0% CPU), beautifully designed, displays upload/download speeds directly in your menu bar.
+- **[Bandwidth+](https://apps.apple.com/app/bandwidth/id490461369)**: Ultra-minimalist menu bar bandwidth counter.
+
+### 🐧 Linux (Ubuntu, Fedora, Arch, Debian)
+- **GNOME Desktop:** **[Vitals](https://github.com/corecoding/Vitals)** or **NetSpeed Extension** (`gnome-shell-extension-netspeed`) — native C/JS integration into the top bar.
+- **KDE Plasma:** **Networks Speed** Plasma Widget — native Qt/QML widget for the KDE panel.
+- **Tiling WMs (i3 / Sway / Hyprland):** **[Waybar](https://github.com/Alexays/Waybar)** / **Polybar** built-in network module — queries `/proc/net/dev` with near-zero overhead.
+- **Terminal / Server:** **[bmon](https://github.com/tgraf/bmon)** or **[vnStat](https://github.com/vergoh/vnstat)** — lightweight curses-based live monitor.
+
+### 🤖 Android (Smartphones & Tablets)
+- **[NetSpeed Indicator](https://github.com/nisargjhaveri/NetSpeedIndicator)** *(Open Source on F-Droid / GitHub)*: Clean, battery-efficient live speed indicator in the Android status bar.
+
+### 🍎 iOS / iPadOS (iPhone & iPad)
+- **[Traffic Monitor](https://apps.apple.com/app/traffic-monitor-with-widget/id482570191)**: Lightweight widget for Lock Screen and Dynamic Island live tracking.
+
+---
+
 ## 🛠️ Building from Source
 
-No Visual Studio, SDK, or build tools required. NetSpeedLite compiles using the native C# compiler included with every Windows installation:
+No Visual Studio or extra SDKs required. NetSpeedLite compiles using the native C# compiler included with every Windows installation:
 
-### Build via PowerShell:
 ```powershell
+# Compile all variants (x64, x86, AnyCpu):
+.\build_all.ps1
+
+# Or single quick build:
 .\build.ps1
 ```
-
-### Build via Command Prompt:
-```cmd
-build.bat
-```
-
-### Or using `csc.exe` directly:
-```cmd
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /optimize+ /platform:x64 /win32icon:resources\app.ico /out:bin\NetSpeedLite.exe src\Program.cs src\MainForm.cs src\NetworkMonitor.cs src\TaskbarController.cs src\DarkMenuRenderer.cs src\Properties\AssemblyInfo.cs
-```
-
----
-
-## 📦 Installation & Setup
-
-1. [**Download NetSpeedLite.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite.exe)
-2. Place `NetSpeedLite.exe` in `C:\Program Files\NetSpeedLite\` (or any directory of your choice).
-3. Run `NetSpeedLite.exe`.
-4. Right-click the monitor on your taskbar and ensure **Start with Windows** is checked.
-
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-1. Fork the repository
-2. Create your branch (`git checkout -b feature/NewFeature`)
-3. Commit your changes (`git commit -m 'Add NewFeature'`)
-4. Push to your branch (`git push origin feature/NewFeature`)
-5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
