@@ -133,7 +133,7 @@ namespace NetSpeedLite
             _contextMenu.Renderer = new DarkMenuRenderer();
             _contextMenu.ShowImageMargin = false;
 
-            ToolStripMenuItem titleItem = new ToolStripMenuItem("  NetSpeedLite v1.0") { Enabled = false };
+            ToolStripMenuItem titleItem = new ToolStripMenuItem("  NetSpeedLite v1.0.1") { Enabled = false };
             titleItem.Font = new Font("Segoe UI", 9.0f, FontStyle.Bold);
 
             ToolStripMenuItem taskMgrItem = new ToolStripMenuItem("  Open Task Manager", null, (s, e) => OpenTaskManager());

@@ -5,7 +5,7 @@
 
 <div align="center">
 
-[![Download NetSpeedLite (x64)](https://img.shields.io/badge/⬇️_Download-NetSpeedLite_x64_(v1.0.0)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe)
+[![Download NetSpeedLite (x64)](https://img.shields.io/badge/⬇️_Download-NetSpeedLite_x64_(v1.0.1)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe)
 [![Download Universal (ARM64 / Copilot+)](https://img.shields.io/badge/⬇️_Universal-AnyCpu_(ARM64%20%2F%20x64)-059669?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe)
 
 <br/>
