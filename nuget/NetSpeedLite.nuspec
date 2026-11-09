@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>NetSpeedLite</id>
+    <version>1.0.1</version>
+    <title>NetSpeedLite</title>
+    <authors>git-ysf</authors>
+    <owners>git-ysf</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/git-ysf/NetSpeedLite</projectUrl>
+    <repository type="git" url="https://github.com/git-ysf/NetSpeedLite.git" branch="main" />
+    <readme>README.md</readme>
+    <description>Ultra-featherlight live network upload and download speed monitor for Windows 11 and 10 taskbar. Native C# implementation with zero external dependencies, 18 KB binary footprint, and ~5 MB RAM usage.</description>
+    <releaseNotes>https://github.com/git-ysf/NetSpeedLite/releases/tag/v1.0.1</releaseNotes>
+    <copyright>Copyright (c) 2026 git-ysf</copyright>
+    <tags>network-monitor taskbar speed-meter bandwidth windows11 windows10 featherlight portable</tags>
+  </metadata>
+  <files>
+    <file src="..\bin\NetSpeedLite-x64.exe" target="tools\NetSpeedLite-x64.exe" />
+    <file src="..\bin\NetSpeedLite-x86.exe" target="tools\NetSpeedLite-x86.exe" />
+    <file src="..\bin\NetSpeedLite-AnyCpu.exe" target="tools\NetSpeedLite-AnyCpu.exe" />
+    <file src="..\bin\NetSpeedLite.exe" target="tools\NetSpeedLite.exe" />
+    <file src="..\resources\app.ico" target="tools\app.ico" />
+    <file src="..\README.md" target="README.md" />
+    <file src="..\LICENSE" target="LICENSE" />
+  </files>
+</package>

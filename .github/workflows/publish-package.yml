@@ -1,0 +1,50 @@
+name: Publish GitHub Package
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Build & Publish NuGet Package to GitHub Packages
+    runs-on: windows-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+
+      - name: Compile All Architectures
+        shell: powershell
+        run: |
+          powershell -ExecutionPolicy Bypass -File .\build_all.ps1
+
+      - name: Pack NuGet Package
+        shell: powershell
+        run: |
+          nuget pack nuget\NetSpeedLite.nuspec -OutputDirectory bin
+
+      - name: Upload NuGet Package Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetSpeedLite-NuGetPackage
+          path: bin/*.nupkg
+          if-no-files-found: error
+
+      - name: Configure GitHub Packages Source
+        shell: powershell
+        run: |
+          nuget sources Add -Name "GitHubPackages" -Source "https://nuget.pkg.github.com/git-ysf/index.json" -UserName "git-ysf" -Password "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Push to GitHub Packages
+        shell: powershell
+        run: |
+          nuget push bin\NetSpeedLite.*.nupkg -Source "GitHubPackages" -ApiKey "${{ secrets.GITHUB_TOKEN }}" -SkipDuplicate
