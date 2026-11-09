@@ -70,8 +70,8 @@ namespace NetSpeedLite
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.Style = unchecked((int)0x84000000); // WS_POPUP | WS_CLIPSIBLINGS
-                cp.ExStyle |= 0x08000088;             // WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW | WS_EX_TOPMOST
+                cp.Style = unchecked((int)0x94000000); // WS_POPUP | WS_CLIPSIBLINGS | WS_VISIBLE
+                cp.ExStyle |= 0x08080088;             // WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_LAYERED
                 return cp;
             }
         }
@@ -210,3 +210,4 @@ namespace NetSpeedLite
         }
     }
 }
+
