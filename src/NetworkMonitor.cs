@@ -65,7 +65,7 @@ namespace NetSpeedLite
                 {
                     try
                     {
-                        IPv4InterfaceStatistics stats = _cachedInterfaces[i].GetIPv4Statistics();
+                        IPInterfaceStatistics stats = _cachedInterfaces[i].GetIPStatistics();
                         currentIn += stats.BytesReceived;
                         currentOut += stats.BytesSent;
                     }

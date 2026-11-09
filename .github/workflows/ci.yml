@@ -1,0 +1,52 @@
+name: CI & Build Verification
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build & Verify Architectures
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Compile All Architectures (x64, x86, AnyCpu)
+        shell: powershell
+        run: |
+          powershell -ExecutionPolicy Bypass -File .\build_all.ps1
+
+      - name: Verify Executables Exist
+        shell: powershell
+        run: |
+          $expected = @(
+            "bin\NetSpeedLite-x64.exe",
+            "bin\NetSpeedLite-x86.exe",
+            "bin\NetSpeedLite-AnyCpu.exe",
+            "bin\NetSpeedLite.exe"
+          )
+          foreach ($file in $expected) {
+            if (!(Test-Path $file)) {
+              Write-Error "Missing expected build artifact: $file"
+              exit 1
+            }
+            $item = Get-Item $file
+            Write-Host "[OK] $file ($($item.Length) bytes)"
+          }
+
+      - name: Generate Checksums
+        shell: powershell
+        run: |
+          Get-FileHash bin\*.exe -Algorithm SHA256 | Format-Table -AutoSize
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetSpeedLite-Binaries
+          path: bin/*.exe
+          if-no-files-found: error

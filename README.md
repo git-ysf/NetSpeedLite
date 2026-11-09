@@ -11,6 +11,7 @@
 <br/>
 
 [![Latest Release](https://img.shields.io/github/v/release/git-ysf/NetSpeedLite?color=blue&label=Latest%20Release)](https://github.com/git-ysf/NetSpeedLite/releases/latest)
+[![CI Status](https://github.com/git-ysf/NetSpeedLite/actions/workflows/ci.yml/badge.svg)](https://github.com/git-ysf/NetSpeedLite/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform: Windows 11 / 10](https://img.shields.io/badge/Platform-Windows%2011%20%7C%2010-0078D4.svg)](https://microsoft.com/windows)
 [![Binary Size](https://img.shields.io/badge/Binary%20Size-~18%20KB-success.svg)](#)
@@ -146,12 +147,18 @@ Looking for companion monitors for your non-Windows devices? Here are the best l
 
 NetSpeedLite requires no external SDKs or Visual Studio installations. It compiles cleanly with the C# compiler built into every Windows installation:
 
+### Quick Build (PowerShell):
 ```powershell
 # Compile all variants (x64, x86, AnyCpu):
-.\build_all.ps1
+powershell -ExecutionPolicy Bypass -File .\build_all.ps1
 
 # Or single quick build:
-.\build.ps1
+powershell -ExecutionPolicy Bypass -File .\build.ps1
+```
+
+### Quick Build (Command Prompt):
+```cmd
+build.bat
 ```
 
 ---

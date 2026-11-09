@@ -39,7 +39,7 @@ namespace NetSpeedLite
         private const uint SWP_NOSIZE = 0x0001;
         private const uint SWP_NOMOVE = 0x0002;
 
-        public const int WindowWidth = 88;
+        public const int WindowWidth = 92;
         public const int WindowHeight = 32;
 
         private int _lastX = -1;
