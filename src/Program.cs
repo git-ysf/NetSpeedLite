@@ -16,6 +16,9 @@ namespace NetSpeedLite
         [DllImport("user32.dll")]
         private static extern bool SetThreadDesktop(IntPtr hDesktop);
 
+        [DllImport("user32.dll")]
+        private static extern bool CloseDesktop(IntPtr hDesktop);
+
         [STAThread]
         static void Main()
         {
@@ -33,12 +36,13 @@ namespace NetSpeedLite
                     return; // Already running
                 }
 
-                // Run UI message pump on a clean STA thread attached to the interactive 'default' desktop
+                // Run UI message pump on a clean STA thread attached to the interactive 'Default' desktop
                 Thread uiThread = new Thread(() =>
                 {
+                    IntPtr hDesk = IntPtr.Zero;
                     try
                     {
-                        IntPtr hDesk = OpenDesktop("default", 0, false, 0x01FF);
+                        hDesk = OpenDesktop("Default", 0, false, 0x01FF);
                         if (hDesk != IntPtr.Zero)
                         {
                             SetThreadDesktop(hDesk);
@@ -46,9 +50,19 @@ namespace NetSpeedLite
                     }
                     catch {}
 
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new MainForm());
+                    try
+                    {
+                        Application.EnableVisualStyles();
+                        Application.SetCompatibleTextRenderingDefault(false);
+                        Application.Run(new MainForm());
+                    }
+                    finally
+                    {
+                        if (hDesk != IntPtr.Zero)
+                        {
+                            try { CloseDesktop(hDesk); } catch {}
+                        }
+                    }
                 });
 
                 uiThread.SetApartmentState(ApartmentState.STA);

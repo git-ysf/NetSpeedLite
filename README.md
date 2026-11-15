@@ -5,7 +5,7 @@
 
 <div align="center">
 
-[![Download NetSpeedLite (x64)](https://img.shields.io/badge/⬇️_Download-NetSpeedLite_x64_(v1.0.1)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe)
+[![Download NetSpeedLite (x64)](https://img.shields.io/badge/⬇️_Download-NetSpeedLite_x64_(v1.0.2)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe)
 [![Download Universal (ARM64 / Copilot+)](https://img.shields.io/badge/⬇️_Universal-AnyCpu_(ARM64%20%2F%20x64)-059669?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe)
 
 <br/>
@@ -84,7 +84,7 @@ winget install git-ysf.NetSpeedLite
 | **x64 (64-bit)** *(Recommended)* | 99% of modern Intel & AMD laptops, desktops, and handhelds | `18 KB` | [**Download NetSpeedLite-x64.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe) |
 | **AnyCpu (Universal)** | **ARM64 Copilot+ PCs** (Snapdragon X Elite), Surface Pro, Intel & AMD | `18 KB` | [**Download NetSpeedLite-AnyCpu.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe) |
 | **x86 (32-bit)** | Older 32-bit PCs, lightweight Windows VMs, legacy tablets | `18 KB` | [**Download NetSpeedLite-x86.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x86.exe) |
-| **All-in-One (.zip)** | Portable archive containing all architectures & documentation | `45 KB` | [**Download NetSpeedLite-v1.0.1.zip**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-v1.0.1.zip) |
+| **All-in-One (.zip)** | Portable archive containing all architectures & documentation | `50 KB` | [**Download NetSpeedLite-v1.0.2.zip**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-v1.0.2.zip) |
 
 > 💡 *All builds are completely portable: single standalone `.exe` files with no installer needed. Check all versions on the [GitHub Releases Page](https://github.com/git-ysf/NetSpeedLite/releases).*
 

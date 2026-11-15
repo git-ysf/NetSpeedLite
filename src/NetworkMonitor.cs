@@ -20,6 +20,7 @@ namespace NetSpeedLite
         private long _lastOutBytes = 0;
         private long _lastTimestamp = 0;
         private bool _isFirstSample = true;
+        private int _sampleCount = 0;
 
         public NetworkMonitor()
         {
@@ -51,11 +52,20 @@ namespace NetSpeedLite
                     }
                 }
                 catch {}
+                _isFirstSample = true; // Calibrate next sample to prevent false spike on adapter change
             }
         }
 
         public NetworkSpeedSample GetCurrentSpeed()
         {
+            // Periodically refresh interfaces every 30 samples (30s) in case network changed without OS event
+            _sampleCount++;
+            if (_sampleCount >= 30)
+            {
+                _sampleCount = 0;
+                RefreshInterfaces();
+            }
+
             long currentIn = 0;
             long currentOut = 0;
 

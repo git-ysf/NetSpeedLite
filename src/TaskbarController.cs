@@ -39,13 +39,15 @@ namespace NetSpeedLite
         private const uint SWP_NOSIZE = 0x0001;
         private const uint SWP_NOMOVE = 0x0002;
 
-        public const int WindowWidth = 92;
-        public const int WindowHeight = 32;
+        public const int DefaultWidth = 96;
+        public const int DefaultHeight = 32;
 
         private int _lastX = -1;
         private int _lastY = -1;
+        private int _lastWidth = -1;
+        private int _lastHeight = -1;
 
-        public void PositionWindow(IntPtr hWnd, bool force = false)
+        public void PositionWindow(IntPtr hWnd, int width, int height, bool force = false)
         {
             try
             {
@@ -62,24 +64,53 @@ namespace NetSpeedLite
                 int targetX;
                 int targetY;
 
-                if (hNotify != IntPtr.Zero)
+                bool isHorizontal = trayRect.Width >= trayRect.Height;
+
+                if (isHorizontal)
                 {
-                    RECT notifyRect;
-                    GetWindowRect(hNotify, out notifyRect);
-                    targetX = notifyRect.Left - WindowWidth - 6;
+                    if (hNotify != IntPtr.Zero && IsWindowVisible(hNotify))
+                    {
+                        RECT notifyRect;
+                        GetWindowRect(hNotify, out notifyRect);
+                        if (notifyRect.Left > trayRect.Left && notifyRect.Left < trayRect.Right)
+                        {
+                            targetX = notifyRect.Left - width - 6;
+                        }
+                        else
+                        {
+                            targetX = trayRect.Right - width - 260;
+                        }
+                    }
+                    else
+                    {
+                        targetX = trayRect.Right - width - 260;
+                    }
+
+                    targetY = trayRect.Top + Math.Max(0, (trayRect.Height - height) / 2);
                 }
                 else
                 {
-                    targetX = trayRect.Right - WindowWidth - 260;
+                    // Vertical taskbar (Win10 left/right)
+                    targetX = trayRect.Left + Math.Max(0, (trayRect.Width - width) / 2);
+                    if (hNotify != IntPtr.Zero && IsWindowVisible(hNotify))
+                    {
+                        RECT notifyRect;
+                        GetWindowRect(hNotify, out notifyRect);
+                        targetY = notifyRect.Top - height - 6;
+                    }
+                    else
+                    {
+                        targetY = trayRect.Bottom - height - 200;
+                    }
                 }
 
-                targetY = trayRect.Top + (trayRect.Height - WindowHeight) / 2;
-
-                if (force || targetX != _lastX || targetY != _lastY)
+                if (force || targetX != _lastX || targetY != _lastY || width != _lastWidth || height != _lastHeight)
                 {
                     _lastX = targetX;
                     _lastY = targetY;
-                    SetWindowPos(hWnd, HWND_TOPMOST, targetX, targetY, WindowWidth, WindowHeight, SWP_NOACTIVATE | SWP_SHOWWINDOW);
+                    _lastWidth = width;
+                    _lastHeight = height;
+                    SetWindowPos(hWnd, HWND_TOPMOST, targetX, targetY, width, height, SWP_NOACTIVATE | SWP_SHOWWINDOW);
                 }
                 else
                 {

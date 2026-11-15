@@ -1,6 +1,6 @@
 # Created using Windows Package Manager Manifest Creator
 PackageIdentifier: git-ysf.NetSpeedLite
-PackageVersion: 1.0.1
+PackageVersion: 1.0.2
 Platform:
 - Windows.Desktop
 MinimumOSVersion: 10.0.17763.0
@@ -9,13 +9,13 @@ Commands:
 - NetSpeedLite
 Installers:
 - Architecture: x64
-  InstallerUrl: https://github.com/git-ysf/NetSpeedLite/releases/download/v1.0.1/NetSpeedLite-x64.exe
-  InstallerSha256: F2674EFE14801CF80B9E772FFCC458A9B57581E09062033E1BB4D1AD151B24CA
+  InstallerUrl: https://github.com/git-ysf/NetSpeedLite/releases/download/v1.0.2/NetSpeedLite-x64.exe
+  InstallerSha256: 10A3EFCB29E4CE167F4BC8FBE5CE69F6D74425788B76646713225AF0BAB2DC28
 - Architecture: arm64
-  InstallerUrl: https://github.com/git-ysf/NetSpeedLite/releases/download/v1.0.1/NetSpeedLite-AnyCpu.exe
-  InstallerSha256: 1EBA2E9AA15D328058AF81655B63C4FAEE0B15F0EE8EAAA16E0D369EDC8891F2
+  InstallerUrl: https://github.com/git-ysf/NetSpeedLite/releases/download/v1.0.2/NetSpeedLite-AnyCpu.exe
+  InstallerSha256: BD762BD0EE2151AC5D047B847CFAAD4A29C488C2D544E36DF05826DE74FCE6EE
 - Architecture: x86
-  InstallerUrl: https://github.com/git-ysf/NetSpeedLite/releases/download/v1.0.1/NetSpeedLite-x86.exe
-  InstallerSha256: A84CA42FD4840C652145D9ABF44301B80846A17EEEF299DABA52319CD662F7F9
+  InstallerUrl: https://github.com/git-ysf/NetSpeedLite/releases/download/v1.0.2/NetSpeedLite-x86.exe
+  InstallerSha256: 12E51DCE60BCF239FBB3D474ABA0FB40B00469F160AC40CDF9E758A27AD253DD
 ManifestType: installer
 ManifestVersion: 1.6.0

@@ -33,5 +33,17 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 Copy-Item "$bin\NetSpeedLite-x64.exe" -Destination "$bin\NetSpeedLite.exe" -Force
 
-Write-Host "`n[SUCCESS] All architectures built successfully:" -ForegroundColor Green
-Get-ChildItem $bin -Filter "*.exe" | Select-Object Name, Length
+# Create portable distribution zip
+$zipPath = Join-Path $bin "NetSpeedLite-v1.0.2.zip"
+$staging = Join-Path $env:TEMP "NetSpeedLite-staging"
+if (Test-Path $staging) { Remove-Item $staging -Recurse -Force }
+New-Item -ItemType Directory -Path $staging | Out-Null
+Copy-Item (Join-Path $bin "*.exe") -Destination $staging
+Copy-Item (Join-Path $PSScriptRoot "resources\app.ico") -Destination $staging
+Copy-Item (Join-Path $PSScriptRoot "README.md") -Destination $staging
+Copy-Item (Join-Path $PSScriptRoot "LICENSE") -Destination $staging
+Compress-Archive -Path "$staging\*" -DestinationPath $zipPath -Force
+Remove-Item $staging -Recurse -Force
+
+Write-Host "`n[SUCCESS] All architectures and distribution packages built successfully:" -ForegroundColor Green
+Get-ChildItem $bin | Select-Object Name, Length

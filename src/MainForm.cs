@@ -21,10 +21,14 @@ namespace NetSpeedLite
         private readonly ContextMenuStrip _contextMenu = new ContextMenuStrip();
         private ToolStripMenuItem _startWithWindowsItem;
 
-        private readonly Font _font = new Font("Segoe UI", 9.0f, FontStyle.Regular, GraphicsUnit.Point);
+        private Font _font;
         private readonly SolidBrush _cyanBrush = new SolidBrush(Color.FromArgb(56, 189, 248));   // #38BDF8
         private readonly SolidBrush _whiteBrush = new SolidBrush(Color.FromArgb(248, 250, 252)); // #F8FAFC
         private readonly Color _transColor = Color.FromArgb(1, 0, 0);
+
+        private float _arrowWidth = 14f;
+        private float _textXOffset = 16f;
+        private float _lineHeight = 16f;
 
         private string _upText = "0.00 KB/s";
         private string _downText = "0.00 KB/s";
@@ -37,14 +41,14 @@ namespace NetSpeedLite
             this.AutoScaleMode = AutoScaleMode.None;
             this.BackColor = _transColor;
             this.TransparencyKey = _transColor;
-            this.Width = TaskbarController.WindowWidth;
-            this.Height = TaskbarController.WindowHeight;
             this.TopMost = true;
 
             SetStyle(ControlStyles.AllPaintingInWmPaint |
                      ControlStyles.UserPaint |
                      ControlStyles.OptimizedDoubleBuffer, true);
             UpdateStyles();
+
+            UpdateDpiMetrics();
 
             BuildContextMenu();
             this.ContextMenuStrip = _contextMenu;
@@ -62,7 +66,32 @@ namespace NetSpeedLite
             _timer.Start();
 
             // Initial placement
-            _taskbar.PositionWindow(this.Handle, true);
+            _taskbar.PositionWindow(this.Handle, this.Width, this.Height, true);
+        }
+
+        private void UpdateDpiMetrics()
+        {
+            using (Graphics g = this.CreateGraphics())
+            {
+                float dpiScale = g.DpiX / 96.0f;
+                if (dpiScale < 1.0f) dpiScale = 1.0f;
+
+                if (_font != null) _font.Dispose();
+                _font = new Font("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point);
+
+                SizeF arrowTypo = g.MeasureString("↑: ", _font, PointF.Empty, StringFormat.GenericTypographic);
+                float xArrow = 2.0f * dpiScale;
+                _arrowWidth = arrowTypo.Width;
+                _textXOffset = xArrow + _arrowWidth + 3.0f * dpiScale;
+
+                SizeF maxSpeedTypo = g.MeasureString("999.99 MB/s", _font, PointF.Empty, StringFormat.GenericTypographic);
+                int neededWidth = (int)Math.Ceiling(_textXOffset + maxSpeedTypo.Width + 6.0f * dpiScale);
+                int minWidth = (int)Math.Ceiling(96.0f * dpiScale);
+                this.Width = Math.Max(neededWidth, minWidth);
+
+                _lineHeight = _font.GetHeight(g);
+                this.Height = (int)Math.Ceiling(_lineHeight * 2.0f + 2.0f * dpiScale);
+            }
         }
 
         protected override CreateParams CreateParams
@@ -105,13 +134,21 @@ namespace NetSpeedLite
             // Atomic clear to transparent color key
             g.Clear(_transColor);
 
+            float dpiScale = g.DpiX / 96.0f;
+            if (dpiScale < 1.0f) dpiScale = 1.0f;
+            float xArrow = 2.0f * dpiScale;
+
+            float y1 = (this.Height - _lineHeight * 2.0f) / 2.0f;
+            if (y1 < 0) y1 = 0;
+            float y2 = y1 + _lineHeight;
+
             // Line 1: Upload (↑: 0.00 KB/s)
-            g.DrawString("↑: ", _font, _cyanBrush, 1, 1);
-            g.DrawString(_upText, _font, _whiteBrush, 17, 1);
+            g.DrawString("↑: ", _font, _cyanBrush, xArrow, y1);
+            g.DrawString(_upText, _font, _whiteBrush, _textXOffset, y1);
 
             // Line 2: Download (↓: 0.00 KB/s)
-            g.DrawString("↓: ", _font, _cyanBrush, 1, 16);
-            g.DrawString(_downText, _font, _whiteBrush, 17, 16);
+            g.DrawString("↓: ", _font, _cyanBrush, xArrow, y2);
+            g.DrawString(_downText, _font, _whiteBrush, _textXOffset, y2);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -122,7 +159,7 @@ namespace NetSpeedLite
                 _upText = sample.UploadFormatted;
                 _downText = sample.DownloadFormatted;
 
-                _taskbar.PositionWindow(this.Handle);
+                _taskbar.PositionWindow(this.Handle, this.Width, this.Height);
                 this.Invalidate();
             }
             catch {}
@@ -133,7 +170,7 @@ namespace NetSpeedLite
             _contextMenu.Renderer = new DarkMenuRenderer();
             _contextMenu.ShowImageMargin = false;
 
-            ToolStripMenuItem titleItem = new ToolStripMenuItem("  NetSpeedLite v1.0.1") { Enabled = false };
+            ToolStripMenuItem titleItem = new ToolStripMenuItem("  NetSpeedLite v1.0.2") { Enabled = false };
             titleItem.Font = new Font("Segoe UI", 9.0f, FontStyle.Bold);
 
             ToolStripMenuItem taskMgrItem = new ToolStripMenuItem("  Open Task Manager", null, (s, e) => OpenTaskManager());
@@ -208,6 +245,18 @@ namespace NetSpeedLite
             SetAutoStart(nextState);
             _startWithWindowsItem.Checked = nextState;
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_timer != null) { _timer.Stop(); _timer.Dispose(); }
+                if (_font != null) _font.Dispose();
+                if (_cyanBrush != null) _cyanBrush.Dispose();
+                if (_whiteBrush != null) _whiteBrush.Dispose();
+                if (_contextMenu != null) _contextMenu.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
-
