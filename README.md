@@ -5,7 +5,7 @@
 
 <div align="center">
 
-[![Download NetSpeedLite (x64)](https://img.shields.io/badge/⬇️_Download-NetSpeedLite_x64_(v1.1.0)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe)
+[![Download NetSpeedLite (x64)](https://img.shields.io/badge/⬇️_Download-NetSpeedLite_x64_(v1.2.0)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe)
 [![Download Universal (ARM64 / Copilot+)](https://img.shields.io/badge/⬇️_Universal-AnyCpu_(ARM64%20%2F%20x64)-059669?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe)
 
 <br/>
@@ -89,10 +89,10 @@ winget install git-ysf.NetSpeedLite
 | **AnyCpu (Universal / ARM64)** | **ARM64 Copilot+ PCs** (Snapdragon X Elite), Surface Pro, Intel & AMD | `~40 KB` | [**Download NetSpeedLite-AnyCpu.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe) |
 | **x86 (32-bit)** | Older 32-bit PCs, lightweight Windows VMs, legacy tablets | `~40 KB` | [**Download NetSpeedLite-x86.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x86.exe) |
 | **ARM (32-bit)** | Legacy Windows ARM / Surface RT-class devices | `~40 KB` | [**Download NetSpeedLite-arm.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-arm.exe) |
-| **All-in-One (.zip)** | Portable archive containing all architectures & documentation | `~95 KB` | [**Download NetSpeedLite-v1.1.0.zip**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-v1.1.0.zip) |
+| **All-in-One (.zip)** | Portable archive containing all architectures & documentation | `~95 KB` | [**Download NetSpeedLite-v1.2.0.zip**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-v1.2.0.zip) |
 | **Checksums** | SHA-256 verification hashes for all release binaries | `~450 B` | [**Download SHA256SUMS.txt**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/SHA256SUMS.txt) |
 
-> 💡 *All builds are completely portable: single standalone `.exe` files with no installer needed. Browse all current and previous releases (`v1.0.0` – `v1.1.0`) on the [GitHub Releases Page](https://github.com/git-ysf/NetSpeedLite/releases) or see [`CHANGELOG.md`](CHANGELOG.md).*
+> 💡 *All builds are completely portable: single standalone `.exe` files with no installer needed. Browse all current and previous releases (`v1.0.0` – `v1.2.0`) on the [GitHub Releases Page](https://github.com/git-ysf/NetSpeedLite/releases) or see [`CHANGELOG.md`](CHANGELOG.md).*
 
 ---
 
@@ -150,14 +150,17 @@ Yes! Download the [NetSpeedLite-AnyCpu.exe](https://github.com/git-ysf/NetSpeedL
 
 ---
 
-## 🌐 Recommended Featherlight Monitors for Other Operating Systems
+## 🌐 Cross-Platform Editions
 
-Looking for companion monitors for your non-Windows devices? Here are the best lightweight open-source alternatives:
+NetSpeedLite now includes native, zero-bloat editions across desktop and mobile platforms under [`platforms/`](platforms):
 
-- 🍏 **macOS (MacBook, Mac Mini, Studio):** **[Stats](https://github.com/exelban/stats)** — Open-source native Swift menu bar monitor (~15 MB RAM, 0.00% CPU).
-- 🐧 **Linux (Ubuntu, Fedora, Arch):** **[Vitals](https://github.com/corecoding/Vitals)** & **NetSpeed** for GNOME / KDE; built-in `/proc/net/dev` module for **[Waybar](https://github.com/Alexays/Waybar)** and Polybar.
-- 🤖 **Android (Phones & Tablets):** **[NetSpeed Indicator](https://github.com/nisargjhaveri/NetSpeedIndicator)** — Open-source status-bar speed monitor on F-Droid.
-- 🍎 **iOS / iPadOS (iPhone & iPad):** **[Traffic Monitor](https://apps.apple.com/app/traffic-monitor-with-widget/id482570191)** — Dynamic Island & Lock Screen live widget.
+| Platform | Artifact / Output | Highlights | Build / Source |
+| :--- | :--- | :--- | :--- |
+| **Windows 11 / 10** | `NetSpeedLite-x64.exe` / `AnyCpu` / `x86` | Native C# WinForms taskbar glass pill, hover telemetry card, 10 themes | [`src/`](src) (`build_all.ps1`) |
+| **Android** | `NetSpeedLite-Android.apk` | Native Java foreground service, live notification speed readout (`TrafficStats`), zero external dependencies | [`platforms/android/`](platforms/android) |
+| **macOS** | `NetSpeedLite-macOS.zip` | Universal (`arm64` + `x86_64`) Swift/AppKit menu bar app with popover telemetry card & sparkline | [`platforms/macos/`](platforms/macos) (`build_macos.sh`) |
+| **Linux** | `netspeedlite-linux-x86_64` | Zero-dependency C99 binary reading `/proc/net/dev` with `--waybar`, `--polybar`, `--tui`, `--once`, and `--json` modes | [`platforms/linux/`](platforms/linux) (`Makefile`) |
+| **iOS / iPadOS** | `NetSpeedLite-iOS-unsigned.ipa` / Xcode | Native SwiftUI + WidgetKit app & live widgets (built via XcodeGen / Xcode) | [`platforms/ios/`](platforms/ios) (`build_ios.sh`) |
 
 ---
 

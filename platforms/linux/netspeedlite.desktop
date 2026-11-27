@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=NetSpeedLite
+GenericName=Network Speed Monitor
+Comment=Ultra-featherlight real-time network upload and download speed monitor
+Exec=netspeedlite --tui
+Icon=network-transmit-receive
+Terminal=true
+Categories=System;Monitor;Network;
+Keywords=network;speed;bandwidth;monitor;traffic;
+StartupNotify=false

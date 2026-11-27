@@ -632,7 +632,7 @@ namespace NetSpeedLite
                 if (_flyout != null && _flyout.Visible) _flyout.Hide();
             };
 
-            ToolStripMenuItem titleItem = new ToolStripMenuItem("NetSpeedLite v1.1.0") { Enabled = false };
+            ToolStripMenuItem titleItem = new ToolStripMenuItem("NetSpeedLite v1.2.0") { Enabled = false };
             titleItem.Font = new Font("Segoe UI", 9.0f, FontStyle.Bold);
 
             _glassPillItem = new ToolStripMenuItem("Glass Pill", null, (s, e) => ToggleGlassPill());

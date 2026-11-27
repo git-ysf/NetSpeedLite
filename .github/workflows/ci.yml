@@ -50,3 +50,169 @@ jobs:
           name: NetSpeedLite-Binaries
           path: bin/*.exe
           if-no-files-found: error
+
+  build-linux:
+    name: Build & Verify Linux (x86_64)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Compile Linux Binary
+        run: |
+          make -C platforms/linux CFLAGS="-std=c99 -O2 -Wall -Wextra -Werror -Wpedantic"
+
+      - name: Verify CLI Modes
+        run: |
+          ./platforms/linux/netspeedlite --once
+          ./platforms/linux/netspeedlite --json
+          waybar_out=$(timeout 3 ./platforms/linux/netspeedlite --waybar || true)
+          test -n "$waybar_out"
+          echo "$waybar_out" | head -n 1
+          polybar_out=$(timeout 3 ./platforms/linux/netspeedlite --polybar || true)
+          test -n "$polybar_out"
+          echo "$polybar_out" | head -n 1
+
+      - name: Upload Linux Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: netspeedlite-linux-x86_64
+          path: platforms/linux/netspeedlite
+          if-no-files-found: error
+
+  build-macos:
+    name: Build & Verify macOS (Universal)
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build macOS App Bundle
+        run: |
+          bash platforms/macos/build_macos.sh
+
+      - name: Upload macOS Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetSpeedLite-macOS.zip
+          path: platforms/macos/build/NetSpeedLite-macOS.zip
+          if-no-files-found: error
+
+  build-ios:
+    name: Build & Verify iOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen if Needed
+        run: |
+          if ! command -v xcodegen >/dev/null 2>&1; then
+            brew install xcodegen
+          fi
+
+      - name: Build iOS Simulator & Archive
+        run: |
+          bash platforms/ios/build_ios.sh
+
+      - name: Upload iOS Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetSpeedLite-iOS-unsigned.ipa
+          path: platforms/ios/build/NetSpeedLite-iOS-unsigned.ipa
+          if-no-files-found: error
+
+  build-android:
+    name: Build & Verify Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Build & Sign Android APK
+        run: |
+          set -euo pipefail
+          BUILD_TOOLS="$ANDROID_HOME/build-tools/34.0.0"
+          ANDROID_JAR="$ANDROID_HOME/platforms/android-34/android.jar"
+          ROOT_DIR="platforms/android"
+          BUILD_DIR="$ROOT_DIR/build"
+
+          for tool in "$ANDROID_JAR" "$BUILD_TOOLS/aapt2" "$BUILD_TOOLS/d8" "$BUILD_TOOLS/zipalign" "$BUILD_TOOLS/apksigner"; do
+            if [ ! -f "$tool" ]; then
+              echo "Required tool missing: $tool" >&2
+              exit 1
+            fi
+          done
+
+          rm -rf "$BUILD_DIR/obj" "$BUILD_DIR/res_flat" "$BUILD_DIR/gen" "$BUILD_DIR/classes" "$BUILD_DIR/dex"
+          mkdir -p "$BUILD_DIR/obj" "$BUILD_DIR/res_flat" "$BUILD_DIR/gen" "$BUILD_DIR/classes" "$BUILD_DIR/dex"
+
+          "$BUILD_TOOLS/aapt2" compile --dir "$ROOT_DIR/res" -o "$BUILD_DIR/res_flat"
+          "$BUILD_TOOLS/aapt2" link \
+            -I "$ANDROID_JAR" \
+            --manifest "$ROOT_DIR/AndroidManifest.xml" \
+            --java "$BUILD_DIR/gen" \
+            --min-sdk-version 26 \
+            --target-sdk-version 34 \
+            -o "$BUILD_DIR/obj/unaligned.apk" \
+            "$BUILD_DIR"/res_flat/*.flat
+
+          mapfile -t JAVA_FILES < <(find "$ROOT_DIR/src" "$BUILD_DIR/gen" -name '*.java')
+          javac \
+            -encoding UTF-8 \
+            -source 11 -target 11 \
+            -classpath "$ANDROID_JAR" \
+            -Xlint:all,-serial,-options \
+            -d "$BUILD_DIR/classes" \
+            "${JAVA_FILES[@]}"
+
+          mapfile -t CLASS_FILES < <(find "$BUILD_DIR/classes" -name '*.class')
+          "$BUILD_TOOLS/d8" \
+            --min-api 26 \
+            --lib "$ANDROID_JAR" \
+            --output "$BUILD_DIR/dex" \
+            "${CLASS_FILES[@]}"
+
+          (cd "$BUILD_DIR/dex" && zip -qj ../obj/unaligned.apk classes.dex)
+          "$BUILD_TOOLS/zipalign" -f -p 4 "$BUILD_DIR/obj/unaligned.apk" "$BUILD_DIR/obj/aligned.apk"
+
+          KEYSTORE="$BUILD_DIR/netspeedlite.keystore"
+          if [ ! -f "$KEYSTORE" ]; then
+            keytool -genkeypair \
+              -v \
+              -keystore "$KEYSTORE" \
+              -alias netspeedlite \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -storepass netspeedlite123 \
+              -keypass netspeedlite123 \
+              -dname "CN=NetSpeedLite, OU=Mobile, O=NetSpeedLite, L=Local, S=NA, C=US"
+          fi
+
+          "$BUILD_TOOLS/apksigner" sign \
+            --ks "$KEYSTORE" \
+            --ks-key-alias netspeedlite \
+            --ks-pass pass:netspeedlite123 \
+            --key-pass pass:netspeedlite123 \
+            --out "$BUILD_DIR/NetSpeedLite-Android.apk" \
+            "$BUILD_DIR/obj/aligned.apk"
+
+          "$BUILD_TOOLS/apksigner" verify --verbose "$BUILD_DIR/NetSpeedLite-Android.apk"
+
+      - name: Upload Android Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetSpeedLite-Android.apk
+          path: platforms/android/build/NetSpeedLite-Android.apk
+          if-no-files-found: error

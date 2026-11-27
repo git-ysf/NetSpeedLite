@@ -39,7 +39,7 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 Copy-Item "$bin\NetSpeedLite-x64.exe" -Destination "$bin\NetSpeedLite.exe" -Force
 
 # Create portable distribution zip
-$zipPath = Join-Path $bin "NetSpeedLite-v1.1.0.zip"
+$zipPath = Join-Path $bin "NetSpeedLite-v1.2.0.zip"
 $staging = Join-Path $env:TEMP "NetSpeedLite-staging"
 if (Test-Path $staging) { Remove-Item $staging -Recurse -Force }
 New-Item -ItemType Directory -Path $staging | Out-Null
@@ -57,7 +57,7 @@ $hashTargets = @(
     "NetSpeedLite-x86.exe",
     "NetSpeedLite-AnyCpu.exe",
     "NetSpeedLite-arm.exe",
-    "NetSpeedLite-v1.1.0.zip"
+    "NetSpeedLite-v1.2.0.zip"
 )
 $lines = foreach ($name in $hashTargets) {
     $h = (Get-FileHash (Join-Path $bin $name) -Algorithm SHA256).Hash.ToLowerInvariant()

@@ -4,6 +4,17 @@ All notable changes to **NetSpeedLite** are documented in this file.
 
 ---
 
+## [v1.2.0] — 2026-11-28
+
+### 🌐 Cross-Platform Edition
+- **Android (`platforms/android`)**: Native Java APK (`NetSpeedLite-Android.apk`) with live status-bar/notification speed monitor, foreground service, and `TrafficStats` sampling.
+- **macOS (`platforms/macos`)**: Universal (`arm64` + `x86_64`) native Swift/AppKit menu bar app (`NetSpeedLite-macOS.zip`) with popover telemetry card, live sparkline, and adaptive themes.
+- **Linux (`platforms/linux`)**: Zero-dependency C99 binary (`netspeedlite-linux-x86_64`) reading `/proc/net/dev` with `--waybar`, `--polybar`, `--tui`, `--once`, and `--json` output modes.
+- **iOS / iPadOS (`platforms/ios`)**: Native SwiftUI + WidgetKit app (`NetSpeedLite-iOS-unsigned.ipa` / XcodeGen project) with live throughput dashboard and widgets.
+- **Multi-Platform CI**: Added parallel GitHub Actions jobs (`build-linux`, `build-macos`, `build-ios`, `build-android`) in `.github/workflows/ci.yml` and updated `.gitignore` for platform build artifacts.
+
+---
+
 ## [v1.1.0] — 2026-11-28
 
 ### ✨ Highlights

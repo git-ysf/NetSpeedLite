@@ -1,0 +1,9 @@
+{
+  "custom/netspeedlite": {
+    "exec": "netspeedlite --waybar --interval 1000",
+    "return-type": "json",
+    "restart-interval": 5,
+    "tooltip": true,
+    "on-click": "xdg-terminal-exec netspeedlite --tui || foot -e netspeedlite --tui || kitty -e netspeedlite --tui"
+  }
+}

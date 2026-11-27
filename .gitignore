@@ -9,6 +9,11 @@ obj/
 
 # Build artifacts
 *.exe
+*.apk
+*.dex
+*.class
+*.o
+platforms/*/build/
 !resources/*.ico
 
 # OS files

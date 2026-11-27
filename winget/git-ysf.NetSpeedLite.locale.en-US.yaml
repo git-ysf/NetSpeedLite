@@ -1,6 +1,6 @@
 # Created using Windows Package Manager Manifest Creator
 PackageIdentifier: git-ysf.NetSpeedLite
-PackageVersion: 1.1.0
+PackageVersion: 1.2.0
 PackageLocale: en-US
 Publisher: git-ysf
 PublisherUrl: https://github.com/git-ysf
@@ -22,6 +22,6 @@ Tags:
 - lightweight
 - featherlight
 - trafficmonitor-alternative
-ReleaseNotesUrl: https://github.com/git-ysf/NetSpeedLite/releases/tag/v1.1.0
+ReleaseNotesUrl: https://github.com/git-ysf/NetSpeedLite/releases/tag/v1.2.0
 ManifestType: defaultLocale
 ManifestVersion: 1.6.0
