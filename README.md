@@ -19,6 +19,10 @@
 [![CPU Usage](https://img.shields.io/badge/CPU%20Usage-0.00%25-brightgreen.svg)](#)
 [![Dependencies](https://img.shields.io/badge/Dependencies-Zero-informational.svg)](#)
 
+<br/><br/>
+
+<img src="resources/preview.png" alt="NetSpeedLite Showcase — Transparent Taskbar Pill, Opaque Hover Telemetry Card, and 10 Adaptive Themes" width="880"/>
+
 </div>
 
 ---
@@ -115,9 +119,13 @@ winget install git-ysf.NetSpeedLite
 - **Modern Dark Context Menu:** Right-clicking opens a custom dark-mode menu with rounded highlights and vector checkmarks.
 
 ### 🖱️ 5. Non-Intrusive Controls
-- **Click-Through:** Left-clicking passes through to the taskbar (`WS_EX_NOACTIVATE`) so it never steals focus from your active project or timeline.
-- **Task Manager Shortcut:** Double-clicking instantly opens Windows Task Manager (`taskmgr.exe`).
-- **One-Click Auto-Start:** Easily toggle Windows startup on or off directly from the right-click menu.
+| Action | Result |
+| :--- | :--- |
+| **Hover** (180 ms) | Opens the opaque live telemetry flyout (adapter, peaks, session data, sparkline) |
+| **Right-click** | Switch between **10 themes**, toggle **Glass Pill**, **Mini Sparkline**, **Bits (Mbps)**, or **Start with Windows** |
+| **Middle-click** | Instantly resets session data totals & peak speeds |
+| **Double-click** | Opens Windows Task Manager (`taskmgr.exe`) |
+| **Left-click** | Click-through (`WS_EX_NOACTIVATE`) — never steals focus from your active app |
 
 ---
 
