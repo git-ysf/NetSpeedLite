@@ -22,8 +22,15 @@ namespace NetSpeedLite
         private bool _isFirstSample = true;
         private int _sampleCount = 0;
 
+        public long SessionDownloadBytes { get; private set; }
+        public long SessionUploadBytes { get; private set; }
+        public double PeakDownloadBytesPerSec { get; private set; }
+        public double PeakUploadBytesPerSec { get; private set; }
+        public string ActiveAdapterName { get; private set; }
+
         public NetworkMonitor()
         {
+            ActiveAdapterName = "No Active Adapter";
             RefreshInterfaces();
             try
             {
@@ -33,11 +40,20 @@ namespace NetSpeedLite
             catch {}
         }
 
+        public void ResetSessionStats()
+        {
+            SessionDownloadBytes = 0;
+            SessionUploadBytes = 0;
+            PeakDownloadBytesPerSec = 0;
+            PeakUploadBytesPerSec = 0;
+        }
+
         public void RefreshInterfaces()
         {
             lock (_cachedInterfaces)
             {
                 _cachedInterfaces.Clear();
+                string primaryName = null;
                 try
                 {
                     NetworkInterface[] all = NetworkInterface.GetAllNetworkInterfaces();
@@ -48,10 +64,15 @@ namespace NetSpeedLite
                             ni.NetworkInterfaceType != NetworkInterfaceType.Tunnel)
                         {
                             _cachedInterfaces.Add(ni);
+                            if (primaryName == null)
+                            {
+                                primaryName = ni.Name + " · " + ni.Description;
+                            }
                         }
                     }
                 }
                 catch {}
+                ActiveAdapterName = primaryName ?? "No Active Adapter";
                 _isFirstSample = true; // Calibrate next sample to prevent false spike on adapter change
             }
         }
@@ -96,21 +117,20 @@ namespace NetSpeedLite
                 {
                     DownloadBytesPerSec = 0,
                     UploadBytesPerSec = 0,
-                    DownloadFormatted = "0.00 KB/s",
-                    UploadFormatted = "0.00 KB/s"
+                    DownloadFormatted = "0.0 KB/s",
+                    UploadFormatted = "0.0 KB/s"
                 };
             }
 
             double elapsedSeconds = (double)(currentTimestamp - _lastTimestamp) / Stopwatch.Frequency;
             if (elapsedSeconds <= 0.05)
             {
-                // Sampling too quickly; return zero delta
                 return new NetworkSpeedSample
                 {
                     DownloadBytesPerSec = 0,
                     UploadBytesPerSec = 0,
-                    DownloadFormatted = "0.00 KB/s",
-                    UploadFormatted = "0.00 KB/s"
+                    DownloadFormatted = "0.0 KB/s",
+                    UploadFormatted = "0.0 KB/s"
                 };
             }
 
@@ -119,6 +139,11 @@ namespace NetSpeedLite
 
             double inBps = deltaIn / elapsedSeconds;
             double outBps = deltaOut / elapsedSeconds;
+
+            SessionDownloadBytes += deltaIn;
+            SessionUploadBytes += deltaOut;
+            if (inBps > PeakDownloadBytesPerSec) PeakDownloadBytesPerSec = inBps;
+            if (outBps > PeakUploadBytesPerSec) PeakUploadBytesPerSec = outBps;
 
             _lastInBytes = currentIn;
             _lastOutBytes = currentOut;
@@ -133,22 +158,57 @@ namespace NetSpeedLite
             };
         }
 
-        public static string FormatSpeed(double bytesPerSec)
+        public static string FormatSpeed(double bytesPerSec, bool useBits)
         {
+            if (useBits)
+            {
+                double bitsPerSec = bytesPerSec * 8.0;
+                if (bitsPerSec < 1000.0 * 1000.0)
+                {
+                    return string.Format("{0:0.0} Kbps", bitsPerSec / 1000.0);
+                }
+                else if (bitsPerSec < 1000.0 * 1000.0 * 1000.0)
+                {
+                    return string.Format("{0:0.00} Mbps", bitsPerSec / (1000.0 * 1000.0));
+                }
+                else
+                {
+                    return string.Format("{0:0.00} Gbps", bitsPerSec / (1000.0 * 1000.0 * 1000.0));
+                }
+            }
+
             if (bytesPerSec < 1024.0 * 1024.0)
             {
-                double kb = bytesPerSec / 1024.0;
-                return string.Format("{0:0.00} KB/s", kb);
+                return string.Format("{0:0.0} KB/s", bytesPerSec / 1024.0);
             }
             else if (bytesPerSec < 1024.0 * 1024.0 * 1024.0)
             {
-                double mb = bytesPerSec / (1024.0 * 1024.0);
-                return string.Format("{0:0.00} MB/s", mb);
+                return string.Format("{0:0.00} MB/s", bytesPerSec / (1024.0 * 1024.0));
             }
             else
             {
-                double gb = bytesPerSec / (1024.0 * 1024.0 * 1024.0);
-                return string.Format("{0:0.00} GB/s", gb);
+                return string.Format("{0:0.00} GB/s", bytesPerSec / (1024.0 * 1024.0 * 1024.0));
+            }
+        }
+
+        public static string FormatSpeed(double bytesPerSec)
+        {
+            return FormatSpeed(bytesPerSec, false);
+        }
+
+        public static string FormatBytes(long bytes)
+        {
+            if (bytes < 1024L * 1024L)
+            {
+                return string.Format("{0:0.0} KB", bytes / 1024.0);
+            }
+            else if (bytes < 1024L * 1024L * 1024L)
+            {
+                return string.Format("{0:0.0} MB", bytes / (1024.0 * 1024.0));
+            }
+            else
+            {
+                return string.Format("{0:0.00} GB", bytes / (1024.0 * 1024.0 * 1024.0));
             }
         }
     }

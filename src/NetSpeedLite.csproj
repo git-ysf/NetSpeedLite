@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="MainForm.cs" />
+    <Compile Include="FlyoutForm.cs" />
     <Compile Include="NetworkMonitor.cs" />
     <Compile Include="TaskbarController.cs" />
     <Compile Include="DarkMenuRenderer.cs" />

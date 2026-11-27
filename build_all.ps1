@@ -12,6 +12,7 @@ if (!(Test-Path $bin)) {
 $src = @(
     (Join-Path $PSScriptRoot "src\Program.cs"),
     (Join-Path $PSScriptRoot "src\MainForm.cs"),
+    (Join-Path $PSScriptRoot "src\FlyoutForm.cs"),
     (Join-Path $PSScriptRoot "src\NetworkMonitor.cs"),
     (Join-Path $PSScriptRoot "src\TaskbarController.cs"),
     (Join-Path $PSScriptRoot "src\DarkMenuRenderer.cs"),
@@ -34,7 +35,7 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 Copy-Item "$bin\NetSpeedLite-x64.exe" -Destination "$bin\NetSpeedLite.exe" -Force
 
 # Create portable distribution zip
-$zipPath = Join-Path $bin "NetSpeedLite-v1.0.2.zip"
+$zipPath = Join-Path $bin "NetSpeedLite-v1.1.0.zip"
 $staging = Join-Path $env:TEMP "NetSpeedLite-staging"
 if (Test-Path $staging) { Remove-Item $staging -Recurse -Force }
 New-Item -ItemType Directory -Path $staging | Out-Null

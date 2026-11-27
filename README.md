@@ -5,7 +5,7 @@
 
 <div align="center">
 
-[![Download NetSpeedLite (x64)](https://img.shields.io/badge/⬇️_Download-NetSpeedLite_x64_(v1.0.2)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe)
+[![Download NetSpeedLite (x64)](https://img.shields.io/badge/⬇️_Download-NetSpeedLite_x64_(v1.1.0)-2563EB?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe)
 [![Download Universal (ARM64 / Copilot+)](https://img.shields.io/badge/⬇️_Universal-AnyCpu_(ARM64%20%2F%20x64)-059669?style=for-the-badge&logo=arm&logoColor=white)](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe)
 
 <br/>
@@ -14,7 +14,7 @@
 [![CI Status](https://github.com/git-ysf/NetSpeedLite/actions/workflows/ci.yml/badge.svg)](https://github.com/git-ysf/NetSpeedLite/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform: Windows 11 / 10](https://img.shields.io/badge/Platform-Windows%2011%20%7C%2010-0078D4.svg)](https://microsoft.com/windows)
-[![Binary Size](https://img.shields.io/badge/Binary%20Size-~18%20KB-success.svg)](#)
+[![Binary Size](https://img.shields.io/badge/Binary%20Size-~40%20KB-success.svg)](#)
 [![RAM Usage](https://img.shields.io/badge/RAM%20Usage-~5%20MB-brightgreen.svg)](#)
 [![CPU Usage](https://img.shields.io/badge/CPU%20Usage-0.00%25-brightgreen.svg)](#)
 [![Dependencies](https://img.shields.io/badge/Dependencies-Zero-informational.svg)](#)
@@ -27,13 +27,13 @@
 
 **NetSpeedLite** is an ultra-featherlight, portable Windows taskbar utility designed to monitor real-time internet upload and download speeds. Docked smoothly next to the system tray notification chevron (`^`), NetSpeedLite delivers accurate network throughput metrics with **subpixel anti-aliasing**, **true taskbar transparency**, and **continuous visibility**.
 
-Unlike heavy monitoring suites that consume hundreds of megabytes of RAM or throw constant update popups, NetSpeedLite operates on a **zero-bloat philosophy**: a single standalone executable of just **18 KB**, consuming only **~5 MB of RAM** and **0.00% CPU**.
+Unlike heavy monitoring suites that consume hundreds of megabytes of RAM or throw constant update popups, NetSpeedLite operates on a **zero-bloat philosophy**: a single standalone executable of just **~40 KB**, consuming only **~5 MB of RAM** and **0.00% CPU**.
 
 ```
-       Taskbar Preview (Native Segoe UI + Transparent Background)
+       Taskbar Preview (Per-Pixel Alpha Glass Pill + Live Sparkline)
 ┌────────────────────────────────────────────────────────────────────────┐
-│  [Windows Start]   [Apps]            ↑: 0.21 KB/s   ^  ENG  📶  🔊     │
-│                                      ↓: 0.17 KB/s                      │
+│  [Windows Start]   [Apps]     ↑  1.42 MB/s  ∿   ^  ENG  📶  🔊         │
+│                               ↓ 24.85 MB/s  ∿                          │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -46,7 +46,7 @@ Why switch to NetSpeedLite? Here is how it compares against popular legacy and c
 | Feature / Metric | 🏆 **NetSpeedLite** | ⚠️ **TrafficMonitor** | ⚠️ **NetSpeedMonitor** | ⚠️ **DU Meter** | ⚠️ **XMeters** |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **Windows 11 Taskbar Support** | **Native & Flawless** | Prone to dropouts | Broken (requires hacks) | DeskBand overlay | Broken on modern Win 11 |
-| **Executable Size** | **~18 KB** | ~35 MB | ~3.5 MB | ~15 MB | ~25 MB |
+| **Executable Size** | **~40 KB** | ~35 MB | ~3.5 MB | ~15 MB | ~25 MB |
 | **RAM Footprint** | **~5.5 MB** | 30 MB – 65 MB | 15 MB – 25 MB | 25 MB – 45 MB | 20 MB – 35 MB |
 | **CPU Impact** | **0.00% (microsecond deltas)** | 0.3% – 1.5% | 0.5% – 1.0% | 0.5% – 2.0% | 0.8% – 2.5% |
 | **External Dependencies** | **None (Native OS)** | LibreHardwareMonitor DLLs | Old VC++ 2005 Runtimes | Proprietary drivers | .NET Framework 4.0 runtime |
@@ -81,12 +81,12 @@ winget install git-ysf.NetSpeedLite
 
 | Architecture | Target Devices | Size | Direct Download |
 | :--- | :--- | :---: | :---: |
-| **x64 (64-bit)** *(Recommended)* | 99% of modern Intel & AMD laptops, desktops, and handhelds | `18 KB` | [**Download NetSpeedLite-x64.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe) |
-| **AnyCpu (Universal)** | **ARM64 Copilot+ PCs** (Snapdragon X Elite), Surface Pro, Intel & AMD | `18 KB` | [**Download NetSpeedLite-AnyCpu.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe) |
-| **x86 (32-bit)** | Older 32-bit PCs, lightweight Windows VMs, legacy tablets | `18 KB` | [**Download NetSpeedLite-x86.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x86.exe) |
-| **All-in-One (.zip)** | Portable archive containing all architectures & documentation | `50 KB` | [**Download NetSpeedLite-v1.0.2.zip**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-v1.0.2.zip) |
+| **x64 (64-bit)** *(Recommended)* | 99% of modern Intel & AMD laptops, desktops, and handhelds | `~40 KB` | [**Download NetSpeedLite-x64.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe) |
+| **AnyCpu (Universal)** | **ARM64 Copilot+ PCs** (Snapdragon X Elite), Surface Pro, Intel & AMD | `~40 KB` | [**Download NetSpeedLite-AnyCpu.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe) |
+| **x86 (32-bit)** | Older 32-bit PCs, lightweight Windows VMs, legacy tablets | `~40 KB` | [**Download NetSpeedLite-x86.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x86.exe) |
+| **All-in-One (.zip)** | Portable archive containing all architectures & documentation | `~85 KB` | [**Download NetSpeedLite-v1.1.0.zip**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-v1.1.0.zip) |
 
-> 💡 *All builds are completely portable: single standalone `.exe` files with no installer needed. Check all versions on the [GitHub Releases Page](https://github.com/git-ysf/NetSpeedLite/releases).*
+> 💡 *All builds are completely portable: single standalone `.exe` files with no installer needed. Browse all current and previous releases (`v1.0.0` – `v1.1.0`) on the [GitHub Releases Page](https://github.com/git-ysf/NetSpeedLite/releases) or see [`CHANGELOG.md`](CHANGELOG.md).*
 
 ---
 
@@ -107,13 +107,12 @@ winget install git-ysf.NetSpeedLite
 - **Atomic Double-Buffered Painting:** Overrides the Windows background-erase message (`WM_ERASEBKGND`) to deliver smooth, flicker-free digital clock-style number updates.
 - **Self-Healing Z-Order:** Anchors automatically to the left edge of `TrayNotifyWnd` and maintains top-level positioning alongside the system tray chevron.
 
-### 🎨 4. Native Windows 11 Dark Aesthetic
-- **True Transparency:** Alpha-keyed background (`#010000`) lets Windows 11 taskbar blur, Mica, and dark themes shine through seamlessly.
-- **Color Palette:**
-  - Up Arrow (`↑:`): Sky Blue (`#38BDF8`)
-  - Down Arrow (`↓:`): Sky Blue (`#38BDF8`)
-  - Speed Values: Crisp Studio White (`#F8FAFC`)
-- **Modern Dark Context Menu:** Right-clicking opens a custom dark-mode menu matching Windows 11 system dialogs.
+### 🎨 4. Per-Pixel Alpha Glass, 10 Themes & Hover Telemetry Flyout
+- **Borderless Transparent Glass Pill:** True 32-bit `UpdateLayeredWindow` rendering adapts automatically to Windows 11/10 Dark and Light taskbars, or switches to pure floating text (**Minimal** mode).
+- **10 Adaptive Color Themes:** Choose from **Ocean**, **Cyber Neon**, **Amber Dusk**, **Monochrome**, **Aurora**, **Crimson**, **Lavender**, **Matrix**, **Nordic**, and **Sunset** via the right-click menu.
+- **Opaque Hover Telemetry Card:** Hovering over the widget opens a crisp opaque flyout displaying your active network adapter, live & peak speeds, session data transferred, and a smooth 16-second dual-channel sparkline — with zero idle resource cost.
+- **Bits / Bytes Toggle:** Switch seamlessly between `KB/s`/`MB/s`/`GB/s` and `Kbps`/`Mbps`/`Gbps`.
+- **Modern Dark Context Menu:** Right-clicking opens a custom dark-mode menu with rounded highlights and vector checkmarks.
 
 ### 🖱️ 5. Non-Intrusive Controls
 - **Click-Through:** Left-clicking passes through to the taskbar (`WS_EX_NOACTIVATE`) so it never steals focus from your active project or timeline.

@@ -14,6 +14,7 @@ $iconPath = Join-Path $PSScriptRoot "resources\app.ico"
 $srcFiles = @(
     (Join-Path $PSScriptRoot "src\Program.cs"),
     (Join-Path $PSScriptRoot "src\MainForm.cs"),
+    (Join-Path $PSScriptRoot "src\FlyoutForm.cs"),
     (Join-Path $PSScriptRoot "src\NetworkMonitor.cs"),
     (Join-Path $PSScriptRoot "src\TaskbarController.cs"),
     (Join-Path $PSScriptRoot "src\DarkMenuRenderer.cs"),
