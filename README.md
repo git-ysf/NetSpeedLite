@@ -86,9 +86,11 @@ winget install git-ysf.NetSpeedLite
 | Architecture | Target Devices | Size | Direct Download |
 | :--- | :--- | :---: | :---: |
 | **x64 (64-bit)** *(Recommended)* | 99% of modern Intel & AMD laptops, desktops, and handhelds | `~40 KB` | [**Download NetSpeedLite-x64.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x64.exe) |
-| **AnyCpu (Universal)** | **ARM64 Copilot+ PCs** (Snapdragon X Elite), Surface Pro, Intel & AMD | `~40 KB` | [**Download NetSpeedLite-AnyCpu.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe) |
+| **AnyCpu (Universal / ARM64)** | **ARM64 Copilot+ PCs** (Snapdragon X Elite), Surface Pro, Intel & AMD | `~40 KB` | [**Download NetSpeedLite-AnyCpu.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-AnyCpu.exe) |
 | **x86 (32-bit)** | Older 32-bit PCs, lightweight Windows VMs, legacy tablets | `~40 KB` | [**Download NetSpeedLite-x86.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-x86.exe) |
-| **All-in-One (.zip)** | Portable archive containing all architectures & documentation | `~85 KB` | [**Download NetSpeedLite-v1.1.0.zip**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-v1.1.0.zip) |
+| **ARM (32-bit)** | Legacy Windows ARM / Surface RT-class devices | `~40 KB` | [**Download NetSpeedLite-arm.exe**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-arm.exe) |
+| **All-in-One (.zip)** | Portable archive containing all architectures & documentation | `~95 KB` | [**Download NetSpeedLite-v1.1.0.zip**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/NetSpeedLite-v1.1.0.zip) |
+| **Checksums** | SHA-256 verification hashes for all release binaries | `~450 B` | [**Download SHA256SUMS.txt**](https://github.com/git-ysf/NetSpeedLite/releases/latest/download/SHA256SUMS.txt) |
 
 > 💡 *All builds are completely portable: single standalone `.exe` files with no installer needed. Browse all current and previous releases (`v1.0.0` – `v1.1.0`) on the [GitHub Releases Page](https://github.com/git-ysf/NetSpeedLite/releases) or see [`CHANGELOG.md`](CHANGELOG.md).*
 

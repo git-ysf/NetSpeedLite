@@ -32,6 +32,10 @@ Write-Host "Compiling NetSpeedLite-AnyCpu.exe..." -ForegroundColor Cyan
 & $csc /target:winexe /optimize+ /platform:anycpu "/win32icon:$icon" "/out:$bin\NetSpeedLite-AnyCpu.exe" $src
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+Write-Host "Compiling NetSpeedLite-arm.exe..." -ForegroundColor Cyan
+& $csc /target:winexe /optimize+ /platform:arm "/win32icon:$icon" "/out:$bin\NetSpeedLite-arm.exe" $src
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
 Copy-Item "$bin\NetSpeedLite-x64.exe" -Destination "$bin\NetSpeedLite.exe" -Force
 
 # Create portable distribution zip
@@ -45,6 +49,21 @@ Copy-Item (Join-Path $PSScriptRoot "README.md") -Destination $staging
 Copy-Item (Join-Path $PSScriptRoot "LICENSE") -Destination $staging
 Compress-Archive -Path "$staging\*" -DestinationPath $zipPath -Force
 Remove-Item $staging -Recurse -Force
+
+# Generate SHA256SUMS.txt
+$checksumPath = Join-Path $bin "SHA256SUMS.txt"
+$hashTargets = @(
+    "NetSpeedLite-x64.exe",
+    "NetSpeedLite-x86.exe",
+    "NetSpeedLite-AnyCpu.exe",
+    "NetSpeedLite-arm.exe",
+    "NetSpeedLite-v1.1.0.zip"
+)
+$lines = foreach ($name in $hashTargets) {
+    $h = (Get-FileHash (Join-Path $bin $name) -Algorithm SHA256).Hash.ToLowerInvariant()
+    "$h  $name"
+}
+Set-Content -Path $checksumPath -Value $lines -Encoding ASCII
 
 Write-Host "`n[SUCCESS] All architectures and distribution packages built successfully:" -ForegroundColor Green
 Get-ChildItem $bin | Select-Object Name, Length

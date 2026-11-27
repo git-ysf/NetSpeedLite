@@ -10,12 +10,12 @@ Commands:
 Installers:
 - Architecture: x64
   InstallerUrl: https://github.com/git-ysf/NetSpeedLite/releases/download/v1.1.0/NetSpeedLite-x64.exe
-  InstallerSha256: 56235FD23CFC6FFFA8BF23D6BD280A1DBC76ACDF33DCFB6E1D41164160E9074F
+  InstallerSha256: 2617F6D0BB0CE2050C8EDDCDA1546A4A8E14A8DF590EEB6DF83ADC5927F71DD8
 - Architecture: arm64
   InstallerUrl: https://github.com/git-ysf/NetSpeedLite/releases/download/v1.1.0/NetSpeedLite-AnyCpu.exe
-  InstallerSha256: 0D068E37A7998A9538C5D159C185960743B8B70D3CB276585CD99C2B537B3A3F
+  InstallerSha256: F9601661F48171853510F88D9403520505C8B7B9D820C0105DEAB4E98E10FA4C
 - Architecture: x86
   InstallerUrl: https://github.com/git-ysf/NetSpeedLite/releases/download/v1.1.0/NetSpeedLite-x86.exe
-  InstallerSha256: B025F0D9F491C2C2D88637D335D4D52B8646327F23EB13BF07C032E3C5C4E4B1
+  InstallerSha256: 9EE1F6C08657FAF2EC1EA6268E7B8065F6CFF9DDE4310596F72B6334B933B6AF
 ManifestType: installer
 ManifestVersion: 1.6.0
